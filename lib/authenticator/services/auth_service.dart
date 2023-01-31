@@ -65,4 +65,15 @@ class AuthService {
 
     return null;
   }
+
+  Future<String?> removerUsuario() async {
+    try {
+      await _auth.currentUser?.delete();
+    } on Exception catch (e) {
+      print(e);
+      return "Não foi possível excluir o usuário";
+    }
+
+    return null;
+  }
 }

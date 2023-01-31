@@ -31,6 +31,14 @@ class _HomeScreenState extends State<HomeScreen> {
       drawer: Drawer(
         child: ListView(children: [
           ListTile(
+            onTap: () => AuthService().removerUsuario(),
+            leading: const Icon(
+              Icons.remove_circle_outline_rounded,
+              color: Colors.red,
+            ),
+            title: const Text("Remover conta"),
+          ),
+          ListTile(
             onTap: () => AuthService().deslogar(),
             leading: const Icon(Icons.logout),
             title: const Text("Sair"),
