@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_firebase_firestore_second/authenticator/services/auth_service.dart';
 
 showRemoverUsuarioDialog(
     {required BuildContext context, required String email}) {
@@ -25,7 +26,11 @@ showRemoverUsuarioDialog(
         ),
         actions: [
           TextButton(
-            onPressed: () {},
+            onPressed: () {
+              AuthService()
+                  .removerUsuario(senha: senhaController.text)
+                  .then((value) => Navigator.pop(context));
+            },
             child: const Text(
               "EXCLUIR CONTA",
               style: TextStyle(

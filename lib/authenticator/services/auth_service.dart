@@ -66,8 +66,15 @@ class AuthService {
     return null;
   }
 
-  Future<String?> removerUsuario() async {
+  Future<String?> removerUsuario({required String senha}) async {
     try {
+      print("Autenticando");
+      await _auth.signInWithEmailAndPassword(
+        email: _auth.currentUser!.email!,
+        password: senha,
+      );
+
+      print("Removendo");
       await _auth.currentUser?.delete();
     } on Exception catch (e) {
       print(e);
