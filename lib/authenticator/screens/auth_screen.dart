@@ -237,6 +237,34 @@ class _AuthScreenState extends State<AuthScreen> {
 
   _esqueceuSenhaClicado() {
     String email = _emailController.text;
-    _enviarEmailRedefinicao(email);
+
+    showDialog(
+      context: context,
+      builder: (context) {
+        TextEditingController confirmarEmailController =
+            TextEditingController(text: email);
+        return AlertDialog(
+          shape: const RoundedRectangleBorder(
+            borderRadius: BorderRadius.all(
+              Radius.circular(16),
+            ),
+          ),
+          title: const Text("Confirme o e-mail"),
+          content: TextFormField(
+            controller: confirmarEmailController,
+            decoration: const InputDecoration(label: Text("E-mail")),
+          ),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.pop(context);
+                _enviarEmailRedefinicao(confirmarEmailController.text);
+              },
+              child: const Text("Enviar"),
+            ),
+          ],
+        );
+      },
+    );
   }
 }
