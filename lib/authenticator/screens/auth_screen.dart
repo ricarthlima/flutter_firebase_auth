@@ -184,6 +184,10 @@ class _AuthScreenState extends State<AuthScreen> {
   _criarUsuario(
       {required String email, required String senha, required String nome}) {
     print("Criar usuário $email, $senha, $nome");
-    authService.criarUsuario();
+    authService.criarUsuario(
+      email: email,
+      senha: senha,
+      nome: nome,
+    );
   }
 }
