@@ -55,4 +55,14 @@ class AuthService {
 
     return null;
   }
+
+  Future<String?> deslogar() async {
+    try {
+      await _auth.signOut();
+    } on Exception {
+      return "Não foi possível deslogar.";
+    }
+
+    return null;
+  }
 }

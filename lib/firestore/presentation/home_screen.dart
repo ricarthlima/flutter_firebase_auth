@@ -1,5 +1,5 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_firebase_firestore_second/authenticator/services/auth_service.dart';
 import 'package:flutter_firebase_firestore_second/firestore/services/listin_service.dart';
 import 'package:flutter_firebase_firestore_second/firestore_produtos/presentation/produto_screen.dart';
 import 'package:uuid/uuid.dart';
@@ -27,6 +27,15 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       appBar: AppBar(
         title: const Text("Listin - Feira Colaborativa"),
+      ),
+      drawer: Drawer(
+        child: ListView(children: [
+          ListTile(
+            onTap: () => AuthService().deslogar(),
+            leading: const Icon(Icons.logout),
+            title: const Text("Sair"),
+          )
+        ]),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
