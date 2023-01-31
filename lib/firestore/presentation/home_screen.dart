@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_firebase_firestore_second/authenticator/components/remove_user_dialog.dart';
 import 'package:flutter_firebase_firestore_second/authenticator/services/auth_service.dart';
 import 'package:flutter_firebase_firestore_second/firestore/services/listin_service.dart';
 import 'package:flutter_firebase_firestore_second/firestore_produtos/presentation/produto_screen.dart';
@@ -31,7 +32,8 @@ class _HomeScreenState extends State<HomeScreen> {
       drawer: Drawer(
         child: ListView(children: [
           ListTile(
-            onTap: () => AuthService().removerUsuario(),
+            onTap: () =>
+                showRemoverUsuarioDialog(context: context, email: "email"),
             leading: const Icon(
               Icons.remove_circle_outline_rounded,
               color: Colors.red,
