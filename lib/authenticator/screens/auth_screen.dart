@@ -193,9 +193,18 @@ class _AuthScreenState extends State<AuthScreen> {
     );
 
     if (erro != null) {
-      print(erro);
+      _mostrarSnackBar(erro: erro);
     } else {
-      print("Sucesso!");
+      _mostrarSnackBar(erro: "Sucesso", isErro: false);
     }
+  }
+
+  _mostrarSnackBar({required String erro, bool isErro = true}) {
+    SnackBar snackBar = SnackBar(
+      content: Text(erro),
+      backgroundColor: (isErro) ? Colors.red : Colors.green,
+    );
+
+    ScaffoldMessenger.of(context).showSnackBar(snackBar);
   }
 }
