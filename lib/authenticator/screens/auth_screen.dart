@@ -181,13 +181,21 @@ class _AuthScreenState extends State<AuthScreen> {
     authService.entrarUsuario();
   }
 
-  _criarUsuario(
-      {required String email, required String senha, required String nome}) {
-    print("Criar usuário $email, $senha, $nome");
-    authService.criarUsuario(
+  _criarUsuario({
+    required String email,
+    required String senha,
+    required String nome,
+  }) async {
+    String? erro = await authService.criarUsuario(
       email: email,
       senha: senha,
       nome: nome,
     );
+
+    if (erro != null) {
+      print(erro);
+    } else {
+      print("Sucesso!");
+    }
   }
 }
