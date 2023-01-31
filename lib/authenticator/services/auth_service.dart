@@ -27,5 +27,8 @@ class AuthService {
     return null;
   }
 
-  entrarUsuario() {}
+  entrarUsuario({required String email, required String senha}) async {
+    await _auth.signInWithEmailAndPassword(email: email, password: senha);
+    print("LOGADO");
+  }
 }

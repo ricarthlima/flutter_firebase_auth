@@ -178,7 +178,7 @@ class _AuthScreenState extends State<AuthScreen> {
 
   _entrarUsuario({required String email, required String senha}) {
     print("Entrar usuário $email, $senha");
-    authService.entrarUsuario();
+    authService.entrarUsuario(email: email, senha: senha);
   }
 
   _criarUsuario({
