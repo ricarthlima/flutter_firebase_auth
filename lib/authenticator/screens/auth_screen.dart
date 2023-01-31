@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_firebase_firestore_second/_core/my_colors.dart';
+import 'package:flutter_firebase_firestore_second/authenticator/services/auth_service.dart';
 
 class AuthScreen extends StatefulWidget {
   const AuthScreen({super.key});
@@ -17,6 +18,8 @@ class _AuthScreenState extends State<AuthScreen> {
   bool isEntrando = true;
 
   final _formKey = GlobalKey<FormState>();
+
+  AuthService authService = AuthService();
 
   @override
   Widget build(BuildContext context) {
@@ -175,10 +178,12 @@ class _AuthScreenState extends State<AuthScreen> {
 
   _entrarUsuario({required String email, required String senha}) {
     print("Entrar usuário $email, $senha");
+    authService.entrarUsuario();
   }
 
   _criarUsuario(
       {required String email, required String senha, required String nome}) {
     print("Criar usuário $email, $senha, $nome");
+    authService.criarUsuario();
   }
 }
