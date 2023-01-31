@@ -27,8 +27,22 @@ class AuthService {
     return null;
   }
 
-  entrarUsuario({required String email, required String senha}) async {
-    await _auth.signInWithEmailAndPassword(email: email, password: senha);
-    print("LOGADO");
+  Future<String?> entrarUsuario(
+      {required String email, required String senha}) async {
+    try {
+      await _auth.signInWithEmailAndPassword(email: email, password: senha);
+    } on FirebaseAuthException catch (e) {
+      switch (e.code) {
+        case "user-not-found":
+          return "Usuário não encontrado.";
+
+        case "wrong-password":
+          return "Senha incorreta.";
+      }
+
+      return e.code;
+    }
+
+    return null;
   }
 }

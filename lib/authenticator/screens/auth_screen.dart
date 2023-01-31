@@ -176,9 +176,14 @@ class _AuthScreenState extends State<AuthScreen> {
     }
   }
 
-  _entrarUsuario({required String email, required String senha}) {
-    print("Entrar usuário $email, $senha");
-    authService.entrarUsuario(email: email, senha: senha);
+  _entrarUsuario({required String email, required String senha}) async {
+    String? erro = await authService.entrarUsuario(email: email, senha: senha);
+
+    if (erro != null) {
+      _mostrarSnackBar(erro: erro);
+    } else {
+      _mostrarSnackBar(erro: "Logado!", isErro: false);
+    }
   }
 
   _criarUsuario({
