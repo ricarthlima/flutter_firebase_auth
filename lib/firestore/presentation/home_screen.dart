@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_firebase_firestore_second/authenticator/components/remove_user_dialog.dart';
 import 'package:flutter_firebase_firestore_second/authenticator/services/auth_service.dart';
@@ -7,7 +8,8 @@ import 'package:uuid/uuid.dart';
 import '../models/listin.dart';
 
 class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key});
+  final User user;
+  const HomeScreen({super.key, required this.user});
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
@@ -31,9 +33,18 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
       drawer: Drawer(
         child: ListView(children: [
+          UserAccountsDrawerHeader(
+            currentAccountPicture: null,
+            accountName: Text((widget.user.displayName != null)
+                ? widget.user.displayName!
+                : ""),
+            accountEmail: Text(widget.user.email!),
+          ),
           ListTile(
-            onTap: () =>
-                showRemoverUsuarioDialog(context: context, email: "email"),
+            onTap: () => showRemoverUsuarioDialog(
+              context: context,
+              email: widget.user.email!,
+            ),
             leading: const Icon(
               Icons.remove_circle_outline_rounded,
               color: Colors.red,
