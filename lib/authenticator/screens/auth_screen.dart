@@ -93,6 +93,18 @@ class _AuthScreenState extends State<AuthScreen> {
                       },
                     ),
                     Visibility(
+                      visible: isEntrando,
+                      child: GestureDetector(
+                        onTap: () {
+                          _esqueceuSenhaClicado();
+                        },
+                        child: const Text(
+                          "Esqueceu a senha?",
+                          textAlign: TextAlign.center,
+                        ),
+                      ),
+                    ),
+                    Visibility(
                         visible: !isEntrando,
                         child: Column(
                           children: [
@@ -211,5 +223,20 @@ class _AuthScreenState extends State<AuthScreen> {
     );
 
     ScaffoldMessenger.of(context).showSnackBar(snackBar);
+  }
+
+  _enviarEmailRedefinicao(String email) async {
+    String? erro = await authService.enviarEmailRedefinicao(email: email);
+
+    if (erro != null) {
+      _mostrarSnackBar(erro: erro);
+    } else {
+      _mostrarSnackBar(erro: "Email de redefinição enviado!", isErro: false);
+    }
+  }
+
+  _esqueceuSenhaClicado() {
+    String email = _emailController.text;
+    _enviarEmailRedefinicao(email);
   }
 }

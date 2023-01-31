@@ -45,4 +45,14 @@ class AuthService {
 
     return null;
   }
+
+  Future<String?> enviarEmailRedefinicao({required String email}) async {
+    try {
+      await _auth.sendPasswordResetEmail(email: email);
+    } on Exception {
+      return "Não foi possível enviar o e-mail de redefinição.";
+    }
+
+    return null;
+  }
 }
