@@ -193,8 +193,6 @@ class _AuthScreenState extends State<AuthScreen> {
 
     if (erro != null) {
       _mostrarSnackBar(erro: erro);
-    } else {
-      _mostrarSnackBar(erro: "Logado!", isErro: false);
     }
   }
 
@@ -211,8 +209,6 @@ class _AuthScreenState extends State<AuthScreen> {
 
     if (erro != null) {
       _mostrarSnackBar(erro: erro);
-    } else {
-      _mostrarSnackBar(erro: "Sucesso", isErro: false);
     }
   }
 
