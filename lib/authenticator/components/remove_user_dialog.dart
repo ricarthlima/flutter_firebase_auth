@@ -11,7 +11,7 @@ showRemoverUsuarioDialog(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
         title: const Text("Confirma remoção?"),
         content: SizedBox(
-          height: 100,
+          height: 140,
           child: Column(
             children: [
               Text("Para confirmar a remoção de $email, digite a senha:"),

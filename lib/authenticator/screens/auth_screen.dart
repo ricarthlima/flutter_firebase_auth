@@ -26,7 +26,6 @@ class _AuthScreenState extends State<AuthScreen> {
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.symmetric(
-          vertical: 64,
           horizontal: 32,
         ),
         child: Center(
@@ -92,15 +91,18 @@ class _AuthScreenState extends State<AuthScreen> {
                         return null;
                       },
                     ),
-                    Visibility(
-                      visible: isEntrando,
-                      child: GestureDetector(
-                        onTap: () {
-                          _esqueceuSenhaClicado();
-                        },
-                        child: const Text(
-                          "Esqueceu a senha?",
-                          textAlign: TextAlign.center,
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Visibility(
+                        visible: isEntrando,
+                        child: GestureDetector(
+                          onTap: () {
+                            _esqueceuSenhaClicado();
+                          },
+                          child: const Text(
+                            "Esqueceu a senha?",
+                            textAlign: TextAlign.center,
+                          ),
                         ),
                       ),
                     ),
